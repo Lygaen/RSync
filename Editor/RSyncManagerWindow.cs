@@ -10,7 +10,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RSync.Editor
+namespace RSync
 {
     public class RSyncManagerWindow : EditorWindow
     {
@@ -20,13 +20,13 @@ namespace RSync.Editor
         [MenuItem("RSync/Reload")]
         public static void Reload()
         {
-            if(!RSyncManager.IsClone)
+            if (!RSyncManager.IsClone)
                 return;
 
             AssetDatabase.Refresh();
             EditorSceneManager.OpenScene(SceneManager.GetActiveScene().path);
         }
-        
+
         [MenuItem("RSync/Manager")]
         private static void ShowWindow()
         {
@@ -74,13 +74,13 @@ namespace RSync.Editor
                 else if (GUILayout.Button("Sync"))
                     RSyncManager.SyncSingle(sshTarget);
 
-                if (GUILayout.Button("Remove")) 
+                if (GUILayout.Button("Remove"))
                     RSyncManager.SshTargets.RemoveAt(i);
                 GUILayout.EndHorizontal();
-                
+
                 EditorGUILayout.Separator();
             }
-            if (GUILayout.Button("Add Target")) 
+            if (GUILayout.Button("Add Target"))
                 RSyncManager.SshTargets.Add(string.Empty);
             EditorGUILayout.Separator();
 
@@ -90,12 +90,12 @@ namespace RSync.Editor
                 GUILayout.Button(new GUIContent("Sync All", "A Sync is already in progress !"));
                 GUI.enabled = true;
             }
-            else if(GUILayout.Button("Sync All"))
+            else if (GUILayout.Button("Sync All"))
                 RSyncManager.SyncAll();
             EditorGUILayout.Separator();
 
             if (!RSyncManager.InProgress) return;
-            
+
             GUI.enabled = false;
             EditorGUILayout.TextField("Syncing Target", RSyncManager.CurrentTarget);
             EditorGUILayout.TextField("Syncing File", RSyncManager.CurrentFile);
@@ -106,7 +106,7 @@ namespace RSync.Editor
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
                 return "NOT_CONNECTED";
-            
+
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
             {
@@ -123,10 +123,10 @@ namespace RSync.Editor
         {
             if (_publicIP != string.Empty)
                 return _publicIP;
-            
+
             if (!NetworkInterface.GetIsNetworkAvailable())
                 return _publicIP = "NOT_CONNECTED";
-            
+
             var request = (HttpWebRequest)WebRequest.Create("https://ifconfig.me");
             request.UserAgent = "curl";
             request.Method = "GET";

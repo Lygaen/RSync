@@ -4,14 +4,14 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RSync.Editor
+namespace RSync
 {
     [InitializeOnLoad]
     public class AssetReload
     {
         static AssetReload()
         {
-            if(RSyncManager.IsClone)
+            if (RSyncManager.IsClone)
                 EditorApplication.update += Update;
         }
 
@@ -28,7 +28,7 @@ namespace RSync.Editor
         {
             if (RSyncManager.IsClone)
                 return;
-            
+
             RSyncManager.SyncAll();
         }
     }

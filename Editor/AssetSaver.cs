@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-namespace RSync.Editor
+namespace RSync
 {
     public class AssetSaver : AssetPostprocessor
     {

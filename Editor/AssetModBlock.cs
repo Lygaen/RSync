@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace RSync.Editor
+namespace RSync
 {
     public class AssetModBlock : AssetModificationProcessor
     {
         private static bool CanOpenForEdit(string[] paths, List<string> outNotEditablePaths, StatusQueryOptions statusQueryOptions)
         {
-            if (RSyncManager.IsClone) 
+            if (RSyncManager.IsClone)
                 outNotEditablePaths.AddRange(paths);
             return !RSyncManager.IsClone;
         }
