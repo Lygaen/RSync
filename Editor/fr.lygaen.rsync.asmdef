@@ -1,0 +1,7 @@
+{
+  "name": "fr.lygaen.rsync",
+  "rootNamespace": "Rsync",
+  "includePlatforms": [
+    "Editor"
+  ]
+}
