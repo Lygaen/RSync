@@ -9,6 +9,6 @@ The two computers need to have **exactly** the same version installed.
 3. Click `Add package from git URL...`
 4. Copy-Paste the following link in the url textbox :
 ```
-https://github.com/Lygaen/RSync
+https://github.com/Lygaen/RSync.git
 ```
 5. Configure using the `RSync` -> `Manager` window
